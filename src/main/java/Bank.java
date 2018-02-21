@@ -22,13 +22,16 @@ public class Bank {
      * successful, false otherwise.
      *
      * @param bankAccount to withdraw money from.
-     * @param amount to withdraw (double)
+     * @param amount      to withdraw (double)
      * @return boolean
      */
     public boolean withdrawMoney(final BankAccount bankAccount, final double amount) {
-        /*
-         * Implement this function
-         */
+        if (amount < 0) {
+            return false;
+        } else {
+            bankAccount.withdraw(amount);
+            return true;
+        }
     }
 
     /**
@@ -38,13 +41,16 @@ public class Bank {
      * successful, false otherwise.
      *
      * @param bankAccount to deposit money to.
-     * @param amount to deposit
+     * @param amount      to deposit
      * @return boolean
      */
     public boolean depositMoney(final BankAccount bankAccount, final double amount) {
-        /*
-         * Implement this function
-         */
+        if (amount < 0) {
+            return false;
+        } else {
+            bankAccount.deposit(amount);
+            return true;
+        }
     }
 
     /**
@@ -53,42 +59,43 @@ public class Bank {
      * Transfer the amount of money from one back account to another. Returns true if transaction is
      * successful, false otherwise.
      *
-     * @param source bank account to transfer money from.
+     * @param source      bank account to transfer money from.
      * @param destination bank account to transfer money to.
-     * @param amount to transfer
+     * @param amount      to transfer
      * @return boolean
      */
 
     public boolean transferMoney(final BankAccount source, final BankAccount destination,
-            final double amount) {
-        /*
-         * Implement this function
-         */
+                                 final double amount) {
+        if (amount < 0) {
+            return false;
+        } else {
+            source.withdraw(amount);
+            destination.deposit(amount);
+            return true;
+        }
     }
 
     /**
      * Change back account owner name.
      *
      * @param bankAccount to change
-     * @param name new name to set
+     * @param name        new name to set
      */
 
     public void changeOwnerName(final BankAccount bankAccount, final String name) {
-        /*
-         * Implement this function
-         */
+        bankAccount.setOwnerName(name);
     }
 
     public static int totalAccounts = 0;
+
     /**
      * Uses static variable to get number of bank accounts opened.
      *
      * @return the total number of accounts
      */
     public static int getNumberOfAccount() {
-        /*
-         * Implement this function
-         */
+        return totalAccounts;
     }
 
     /**
